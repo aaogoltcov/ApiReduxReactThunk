@@ -2,5 +2,5 @@
 /backend/node_modules/*
 /.idea
 /.idea/*
-/frontend/node_modules
-/frontend/node_modules/*
+/frontend/transaction/node_modules
+/frontend/transaction/node_modules/*
