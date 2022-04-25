@@ -36,10 +36,10 @@ function fortune(ctx, body = null, status = 200) {
 router.get('/api/services', async (ctx, next) => {
     const body = services.map(o => ({id: o.id, name: o.name, price: o.price}))
 
-    // ctx.response.status = 200;
-    ctx.response.body = services;
+    ctx.response.status = 200;
+    // ctx.response.body = services;
 
-    // return fortune(ctx, body);
+    return fortune(ctx, body);
 });
 
 router.get('/api/services/:id', async (ctx, next) => {
@@ -56,7 +56,8 @@ router.get('/api/services/:id', async (ctx, next) => {
 router.post('/api/services', async (ctx, next) => {
     console.log(ctx.request.body);
     const id = ctx.request.body.id;
-    if (id !== 0) {
+    console.log(id);
+    if (id !== 0 && id !== undefined) {
         const index = services.findIndex(o => o.id === id);
         if (index === -1) {
             const status = 404;
@@ -67,6 +68,7 @@ router.post('/api/services', async (ctx, next) => {
     }
     
     services.push({ ...ctx.request.body, id: nextId++ });
+    console.log(services);
     const status = 204;
     return fortune(ctx, null, status);
 });
